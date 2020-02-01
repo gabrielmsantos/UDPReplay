@@ -1,0 +1,8 @@
+#Firing UDP packets to localhost interface and port 8888
+echo -n "Hello Gabriel"| nc -w 1 -u -4 localhost 8888 
+
+#Listening and creating the pcap file with the packets captured
+tcpdump -i lo0 udp port 8888 -w packets.pcap
+
+#Replaying the packets captured 
+tcpreplay -i lo0 -K packets.pcap
